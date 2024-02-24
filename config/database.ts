@@ -52,6 +52,24 @@ const databaseConfig: DatabaseConfig = {
       debug: false,
     },
 
+    sqliteTest: {
+      client: 'sqlite',
+      connection: {
+        filename: Application.tmpPath('test.sqlite3'),
+      },
+      pool: {
+        afterCreate: (conn, cb) => {
+          conn.run('PRAGMA foreign_keys=true', cb)
+        },
+      },
+      migrations: {
+        naturalSort: true,
+      },
+      useNullAsDefault: true,
+      healthCheck: false,
+      debug: false,
+    },
+
     /*
     |--------------------------------------------------------------------------
     | MySQL config

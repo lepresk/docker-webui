@@ -1,0 +1,13 @@
+@layout('layouts/default')
+
+@section('content')
+  <div class="container">
+    <h1 class="py-4">Tes logs {{ containerId }}</h1>
+
+    <div style="width: 100%; overflow-x: hidden;">
+      <pre>
+        {{ output }}
+      </pre>
+    </div>
+  </div>
+@end

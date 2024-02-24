@@ -1,0 +1,47 @@
+@layout('layouts/default')
+@section('content')
+  <div class="container">
+    <h1 class="py-4">Liste des containers</h1>
+    <table class="table table-bordered table-stripped">
+      <thead>
+      <tr>
+        <th>CONTAINER ID</th>
+        <th>IMAGE</th>
+        <th>COMMAND</th>
+        <th>CREATED</th>
+        <th>STATUS</th>
+        <th>PORTS</th>
+        <th>NAME</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      @each(container in containers)
+      <tr>
+        <td>{{ container['CONTAINER ID'] }}</td>
+        <td>{{ container.IMAGE }}</td>
+        <td>{{ container.COMMAND }}</td>
+        <td>{{ container.CREATED }}</td>
+        <td>{{ container.STATUS }}</td>
+        <td>
+          @if(container.NAMES !== undefinded)
+            {{ container.PORTS }}
+          @endif
+        </td>
+        <td>
+          @if(container.NAMES === undefinded)
+            {{ container.PORTS }}
+          @else
+            {{ container.NAMES }}
+          @endif
+        </td>
+        <td>
+          <a href="/containers/{{ container['CONTAINER ID'] }}/view-log">View logs</a>
+          <a href="#">Download logs</a>
+        </td>
+      </tr>
+      @end
+      </tbody>
+    </table>
+  </div>
+@end
