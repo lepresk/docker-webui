@@ -1,11 +1,11 @@
-# My Application
+# Docker web-ui log-viewer
 
-This AdonisJS-based application allows you to visualize Docker container logs.
+This AdonisJS web-ui based application allows you to visualize Docker container logs.
 
 ## Prerequisites
 
 - Node.js
-- AdonisJS
+- [AdonisJS](https://adonisjs.com)
 - Docker
 
 ## Installation
