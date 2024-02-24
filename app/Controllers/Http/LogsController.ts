@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import {exec} from 'child_process'
+import { exec, spawn } from 'child_process'
 
 interface Container {
   'CONTAINER ID': string,
@@ -13,7 +13,7 @@ interface Container {
 export default class LogsController {
   private containers: Container[] = []
 
-  private async getContainers (): Promise<Container[]> {
+  private async getContainers(): Promise<Container[]> {
     const output = await new Promise<string>((resolve, reject) => {
       exec('docker ps', (error, stdout, stderr) => {
         if (error) {
@@ -40,30 +40,38 @@ export default class LogsController {
     return containerInfo as Container[]
   }
 
-  public async index ({view}: HttpContextContract) {
+  public async index ({ view }: HttpContextContract) {
     this.containers = await this.getContainers()
 
-    return view.render('containers.edge', {
+    return view.render('index.edge', {
       containers: this.containers,
     })
   }
 
-  public async view ({view, params}: HttpContextContract) {
+  public async view ({ view, params }: HttpContextContract) {
     const containerId = params.id
 
-    const output = await (new Promise((resolve, reject) => {
-      exec(`docker logs ${containerId}`, (error, stdout, stderr) => {
-        if (error || stderr) {
-          reject(error || stderr)
+    const outputChunks: Buffer[] = []
+
+    return new Promise<void|string>((resolve, reject) => {
+      const dockerLogsProcess = spawn('docker', ['logs', containerId])
+
+      dockerLogsProcess.stdout.on('data', (chunk: Buffer) => {
+        outputChunks.push(chunk)
+      })
+
+      dockerLogsProcess.on('close', (code) => {
+        if (code === 0) {
+          const output = Buffer.concat(outputChunks).toString('utf-8')
+          resolve(view.render('view', { output, containerId }))
         } else {
-          resolve(stdout)
+          reject(`Error code ${code} when running 'docker logs'`)
         }
       })
-    }))
 
-    return view.render('view-log', {
-      output,
-      containerId,
+      dockerLogsProcess.on('error', (error) => {
+        reject(error)
+      })
     })
   }
 }

@@ -19,11 +19,10 @@
 */
 import Route from '@ioc:Adonis/Core/Route'
 
-/*
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
-})*/
+})
 
-Route.get('/', 'LogsController.index')
+Route.get('/logs', 'LogsController.index')
 
-Route.get('/containers/:id/view-log', 'LogsController.view')
+Route.get('/logs/:id/view', 'LogsController.view')
