@@ -20,8 +20,10 @@ This AdonisJS web-ui based application allows you to visualize Docker container 
 
 ## Usage
 
-1. Run the AdonisJS development server with `node ace serve -w`.
-2. Access the corresponding URL to view container information (`/logs`) or logs from a specific container (`/logs/:id/view`).
+1. Rename the .env.example file to .env
+2. Generate a key by typing the command: `node ace generate:key`.
+3. Run the AdonisJS development server with `node ace serve`.
+4. Access the corresponding URL to view container information (`/logs`) or logs from a specific container (`/logs/:id/view`).
 
 ## Project Structure
 
