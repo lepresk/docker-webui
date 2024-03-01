@@ -24,6 +24,7 @@ This AdonisJS web-ui based application allows you to visualize Docker container 
 
 1. Run the AdonisJS development server with `node ace serve`.
 2. Access the corresponding URL to view container information (`/logs`) or logs from a specific container (`/logs/:id/view`).
+2. Access the corresponding URL to download  logs from a specific container (`/logs/:id/download`).
 
 ## Project Structure
 
