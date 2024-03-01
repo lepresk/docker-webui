@@ -17,13 +17,13 @@
 | import './routes/customer''
 |
 */
-import Route from "@ioc:Adonis/Core/Route";
+import Route from '@ioc:Adonis/Core/Route';
 
-Route.get("/", async ({ view }) => {
-  return view.render("welcome");
+Route.get('/', async ({ view }) => {
+  return view.render('welcome');
 });
 
-Route.get("/logs", "LogsController.index");
+Route.get('/logs', 'LogsController.index');
 
-Route.get("/logs/:id/view", "LogsController.view");
-Route.get("/logs/:id/download", "LogsController.download");
+Route.get('/logs/:id/view', 'LogsController.view');
+Route.get('/logs/:id/download', 'LogsController.download');
