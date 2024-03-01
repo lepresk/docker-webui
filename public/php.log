@@ -1,0 +1,13 @@
+[17-Feb-2024 14:35:39] NOTICE: fpm is running, pid 1
+[17-Feb-2024 14:35:39] NOTICE: ready to handle connections
+[17-Feb-2024 15:09:59] NOTICE: Finishing ...
+[17-Feb-2024 15:09:59] NOTICE: exiting, bye-bye!
+[23-Feb-2024 21:40:29] NOTICE: fpm is running, pid 1
+[23-Feb-2024 21:40:29] NOTICE: ready to handle connections
+[23-Feb-2024 21:41:28] NOTICE: Finishing ...
+[23-Feb-2024 21:41:28] NOTICE: exiting, bye-bye!
+[24-Feb-2024 07:12:17] NOTICE: fpm is running, pid 1
+[24-Feb-2024 07:12:17] NOTICE: ready to handle connections
+172.20.0.4 -  27/Feb/2024:09:14:14 +0000 "GET /index.php" 200
+[01-Mar-2024 19:23:17] NOTICE: fpm is running, pid 1
+[01-Mar-2024 19:23:17] NOTICE: ready to handle connections

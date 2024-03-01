@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/first-adonis.iml" filepath="$PROJECT_DIR$/.idea/first-adonis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/docker-webui.iml" filepath="$PROJECT_DIR$/.idea/docker-webui.iml" />
     </modules>
   </component>
 </project>
