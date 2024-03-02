@@ -1,11 +1,13 @@
 @layout()
-  <div class="container">
-    <h1 class="py-4">Tes logs {{ containerName }}/{{ containerId }}</h1>
-
-    <div style="width: 100%; overflow-x: hidden;">
-      <pre>
-        {{ output }}
-      </pre>
-    </div>
+<div class="space-y-8 py-8">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-900 sm:text-xl mb-1.5">{{ containerName }} - {{ containerId }}</h2>
+    <a href="/logs/{{ containerId}}/download" class="underline text-blue-500">Download Log</a>
   </div>
+  <div class="w-full overflow-x-hidden">
+    <pre>
+      {{ output }}
+    </pre>
+  </div>
+</div>
 @end

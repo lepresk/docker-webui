@@ -1,6 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { exec, spawn } from 'node:child_process'
 import fs from 'node:fs/promises'
+import fsSync from 'node:fs'
 import app from '@adonisjs/core/services/app'
 import type { Container, ViewParam } from '../../types.js'
 
@@ -117,7 +118,12 @@ export default class LogsController {
     })
 
     const filaname = `${containerName}.log`
-    const filepath = app.publicPath(filaname)
+    const folder = app.publicPath('logs')
+    if (!fsSync.existsSync(folder)) {
+      await fs.mkdir(folder)
+    }
+
+    const filepath = app.publicPath(`logs/${filaname}`)
     await fs.writeFile(filepath, output)
 
     response.attachment(filepath, filaname)

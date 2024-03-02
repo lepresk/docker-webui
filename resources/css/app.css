@@ -1,10 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html,
 body {
-  height: 100%;
-  width: 100%;
+  font-family: 'Work Sans', sans-serif;
 }

@@ -1,46 +1,51 @@
 @layout()
-<div class="container">
-    <h1 class="py-4">Liste des containers</h1>
-    <table class="table table-bordered table-stripped">
-      <thead>
-      <tr>
-        <th>CONTAINER ID</th>
-        <th>IMAGE</th>
-        <th>COMMAND</th>
-        <th>CREATED</th>
-        <th>STATUS</th>
-        <th>PORTS</th>
-        <th>NAME</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
+
+<div class="space-y-8 py-16">
+  <h2 class="text-2xl font-bold text-gray-900 sm:text-xl">Active Containers</h2>
+  <div class="space-y-4">
+    <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       @each(container in containers)
-      <tr>
-        <td>{{ container['CONTAINER ID'] }}</td>
-        <td>{{ container.IMAGE }}</td>
-        <td>{{ container.COMMAND }}</td>
-        <td>{{ container.CREATED }}</td>
-        <td>{{ container.STATUS }}</td>
-        <td>
-          @if(container.NAMES !== undefinded)
-            {{ container.PORTS }}
-          @endif
-        </td>
-        <td>
-          @if(container.NAMES === undefinded)
-            {{ container.PORTS }}
-          @else
-            {{ container.NAMES }}
-          @endif
-        </td>
-        <td>
-          <a href="/logs/{{ container['CONTAINER ID'] }}/view">View logs</a>
-          <a href="/logs/{{ container['CONTAINER ID'] }}/download">Download logs</a>
-        </td>
-      </tr>
+        <li>
+          <a href="/logs/{{ container['CONTAINER ID']}}/view">
+            <div class="group relative block h-full bg-white before:absolute before:inset-0 before:rounded-md before:border-2 before:border-dashed before:border-gray-900">
+              <div class="rounded-md h-full border-2 group-hover:bg-gray-900 border-gray-900 bg-white transition group-hover:-translate-y-2 group-hover:-translate-x-2">
+                <div class="p-4 sm:p-6">
+                  <h2 class="mt-4 font-medium group-hover:text-white text-gray-900 sm:text-lg">
+                    @if(container.NAMES === undefinded)
+                      {{ container.PORTS }}
+                    @else
+                      {{ container.NAMES }}
+                    @endif
+                  </h2>
+                  <p class="text-sm text-gray-700 group-hover:text-slate-300">{{ container.IMAGE }}</p>
+                  <p class="mt-1 text-sm underline text-amber-500">
+                    @if(container.NAMES !== undefinded)
+                      {{ container.PORTS }}
+                    @endif
+                  </p>
+                  <div class="flex items-center mt-1.5 gap-2">
+                    <div class="flex-1 flex items-center gap-2">
+                      <div class="w-4 h-4 rounded-full bg-green-600"></div>
+                      <span class="text-xs text-slate-500">{{ container.STATUS }}</span>
+                    </div>
+                    <div class="h-4 w-[1.5px] bg-gray-950/15 group-hover:bg-slate-400"></div>
+                    <div class="flex-1 flex items-center gap-2">
+                      <span class="">⏲️</span>
+                      <span class="text-xs text-slate-500">{{ container.CREATED }}</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4 justify-start mt-2.5 group-hover:translate-y-1">
+                    <a href="/logs/{{ container['CONTAINER ID'] }}/view" class="text-sm text-blue-500 group-hover:underline group-hover:text-white hover:underline">View logs</a>
+                    <a href="/logs/{{ container['CONTAINER ID'] }}/download" class="text-sm text-blue-500 group-hover:underline group-hover:text-white hover:underline">Download logs</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
       @end
-      </tbody>
-    </table>
+    </ul>
   </div>
+</div>
+
 @end
